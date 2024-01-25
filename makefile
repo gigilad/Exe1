@@ -5,12 +5,12 @@ LOOP_SOURCES = advancedClassificationLoop.o basicClassification.o
 RECURSIVE_SOURCE = advancedClassificationRecursion.o basicClassification.o
 
 all: recursives recursived loops loopd mains maindloop maindrec
-maindloop: main.o libclassloops.so
-	$(CC) $(CFLAGS) -o maindloop main.o libclassloops.so
-maindrec: main.o libclassrec.so
-	$(CC) $(CFLAGS) -o maindrec main.o libclassrec.so
+maindloop: libclassloops.so
+	$(CC) $(CFLAGS) main.o ./libclassloops.so -o maindloop
+maindrec: libclassrec.so
+	$(CC) $(CFLAGS) main.o ./libclassrec.so -o maindrec
 mains: main.o libclassrec.a
-	$(CC) $(CFLAGS) -o mains main.o libclassrec.a
+	$(CC) $(CFLAGS) -o mains main.o ./libclassrec.a
 
 main.o: main.c NumClass.h
 	$(CC) $(CFLAGS) -c main.c
@@ -25,7 +25,6 @@ recursived: $(RECURSIVE_SOURCE)
 
 loopd: $(LOOP_SOURCES)
 	$(CC) -Wall -shared -o libclassloops.so -fPIC $(LOOP_SOURCES)
-
 
 basicClassification.o: basicClassification.c NumClass.h
 	$(CC) $(CFLAGS) -c basicClassification.c
