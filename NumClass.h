@@ -1,12 +1,11 @@
-##ifndef NUMCLASS_H
-#define NUMCLASS_H
+#ifdef NUMCLASS_H
+#include NUMCLASS_H
 
+int isPrime(int);
 int isArmstrong(int);
 int isPalindrome(int);
-int isPrime(int);
 int isStrong(int);
 int factorial(int);
-int countDig(int);
-int power(int ,int );
-
+int countDigits(int);
+int power(int,int);
 #endif
