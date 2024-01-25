@@ -38,10 +38,10 @@ return 0;
 }
 
 int PrintAllpalindrome(int num1,int num2){
-    printf("The Palindromes are: ");
+    printf("The Palindromes are:");
        while(num2>=num1){
         if(isPalindrome(num1)){
-            printf("%d ", num1 );
+            printf(" %d", num1 );
         }
             num1++;
     }
