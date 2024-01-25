@@ -28,15 +28,34 @@ int isArmstrong(int num) {
     return (isArmstrongHelper(num, numDigits, num) == num);
 }
 
-int isPalindrome(int num) {
-    if (num / 10 == 0) return 1;
-    int rightDigit = num % 10;
-    int countDigits = countDig(num);
-    int leftDigit = num / power(10, countDigits - 1);
-    if (rightDigit != leftDigit) return 0;
-    else {
-        num = num - (leftDigit * power(10, countDigits - 1));
-        num = num / 10;
-        return isPalindrome(num);
+
+int isPalindromeHelper(int num, int original, int digits) {
+    // Base case: if there is only one digit, it's a palindrome
+    if (digits <= 1) {
+        return 1;
     }
+
+    // Extract the first and last digits
+    int firstDigit = num / (power(10, digits - 1));
+    int lastDigit = num % 10;
+
+    // Check if the first and last digits are the same
+    if (firstDigit != lastDigit) {
+        return 0;
+    }
+
+    // Remove the first and last digits
+    int newNum = (num % (power(10, digits - 1)) / 10);
+
+    // Recursive call with the reduced number
+    return isPalindromeHelper(newNum, original, digits - 2);
+}
+
+int isPalindrome(int num) {
+    if (num < 0) {
+        return 0; // Negative numbers are not palindromes
+    }
+
+    int digits = countDig(num);
+    return isPalindromeHelper(num, num, digits);
 }
