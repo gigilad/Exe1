@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "NumClass.h"
 int printAllPrimes(int num1 , int num2){
     printf("The Prime numbers are:");
     while(num2>=num1){
